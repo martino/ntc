@@ -2,6 +2,10 @@ from scrapy.spider import BaseSpider
 from scrapy.selector import HtmlXPathSelector
 from scrapy.http import Request
 from scrapy.http import Response
+from sqlalchemy import create_engine, MetaData
+from user import *
+from user_rating import *
+from review import * 
 
 class NewstrustSpider(BaseSpider):
     name = "newstrust.net"
@@ -11,6 +15,11 @@ class NewstrustSpider(BaseSpider):
         'http://newstrust.net/members'
     ]
 
+    def __init__(self):
+        #setup sqlalchemy
+        sqlite_db = create_engine('sqlite:///newstrust.db')
+        metadata = Base.metadata
+        metadata.create_all(sqlite_db)
     def analyze_story(self, response):
         print("Analyze %s"%response.url)
         hxs = HtmlXPathSelector(response)
