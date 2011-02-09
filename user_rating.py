@@ -1,5 +1,5 @@
 from user import *
-from sqlalchemy import ForeignKey
+from sqlalchemy import ForeignKey, Float, DateTime
 from sqlalchemy.orm import relationship, backref
 
 class UserRating(Base):
