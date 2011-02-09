@@ -14,9 +14,12 @@ class NewstrustSpider(BaseSpider):
     def analyze_story(self, response):
         print("Analyze %s"%response.url)
         hxs = HtmlXPathSelector(response)
-        hxs.select('//div[@class="content clearfix"]//div[@class="ratingLabel"]/text() | //div[@class="content clearfix"]//div[@class="numeric_rating"]/text()').extract()
-
-
+        fact = hxs.select('//div[@class="ratingLabel"][text()="Facts\n\t"]/..//div[@class="numeric_rating"]/text()').extract()
+        fairness =  hxs.select('//div[@class="ratingLabel"][text()="Fairness\n\t"]/..//div[@class="numeric_rating"]/text()').extract()
+        sourcing = hxs.select('//div[@class="ratingLabel"][text()="Sourcing\n\t"]/..//div[@class="numeric_rating"]/text()').extract()
+        overall = hxs.select('//div[@class="ratingLabel"][text()="Overall"]/../..//div[@class="numeric_rating"]/text()').extract()
+        quality = hxs.select('//div[@class="ratingLabel"][text()="Quality\n\t"]/..//div[@class="numeric_rating"]/text()').extract()
+        
     def crawl_member(self, response):
         print("Visited %s"%response.url)
         hxs = HtmlXPathSelector(response)   
