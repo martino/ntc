@@ -13,6 +13,9 @@ class Review(Base):
     fairness = Column(Integer)
     sourcing = Column(Integer)
 
+    user_id = Column(Integer, ForeignKey('users.id'))
+    user = relationship(User, backref=backref('reviews', order_by=id))
+    
     def __init__(self, ovr, qlty, fact, fair, source):
         self.overall = ovr
         self.quality = qlty
