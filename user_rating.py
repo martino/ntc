@@ -13,7 +13,7 @@ class UserRating(Base):
     ratings     = Column(Float)
     transparency= Column(Float)
     validation  = Column(Float)
-    reviewsion  = Column(Integer)
+    reviews     = Column(Integer)
     answers     = Column(Integer)
     comments    = Column(Integer)
     ratingsrec  = Column(Integer)

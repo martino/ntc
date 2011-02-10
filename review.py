@@ -16,7 +16,7 @@ class Review(Base):
     user_id = Column(Integer, ForeignKey('users.id'))
     user = relationship(User, backref=backref('reviews', order_by=id))
     
-    def __init__(self, ovr, qlty, fact, fair, source):
+    def __init__(self, ovr, qlty, fact=-1, fair=-1, source=-1):
         self.overall = ovr
         self.quality = qlty
         self.fact    = fact
